@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import ClickCounter from './ClickCounter'
+import ContryPanel from './ContryPanel'
 
-ReactDOM.render(<ClickCounter />, document.getElementById('root'));
+ReactDOM.render(<ContryPanel />, document.getElementById('root'));
 registerServiceWorker();
