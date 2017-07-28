@@ -12,7 +12,7 @@ export default class Counter extends Component{
         this.onClickIncrementButton=this.onClickIncrementButton.bind(this)
         this.onClickDecrementButton=this.onClickDecrementButton.bind(this)
         this.state={
-            count:props.initValue
+            count:props.initValue||0
         }
     }
     componentWillReceiveProps(nextProps){
@@ -26,13 +26,15 @@ export default class Counter extends Component{
     }
     onClickIncrementButton(){
         this.setState({count:this.state.count+1})
+        this.props.sumNumber(1)
     }
     onClickDecrementButton(){
         this.setState({count:this.state.count-1})
+        this.props.sumNumber(-1)
     }
     shouldComponentUpdate(nextProps, nextState) {
-        return (nextProps.caption !== this.props.caption) ||
-            (nextState.count !== this.state.count);
+        return (nextProps.caption !== this.props.caption) ||  //渲染优化，只有档caption和count改变的时候自组件才会重新渲染.
+               (nextState.count !== this.state.count);
     }
 
     render(){
@@ -46,6 +48,9 @@ export default class Counter extends Component{
             </div>
         );
     }
+    // componentDidUpdate(){
+    //     this.props.sumNumber(this.state.count)
+    // }
 }
 
 // Counter.propTypes = {
