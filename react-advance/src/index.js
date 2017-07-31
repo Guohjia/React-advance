@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ControlPanel from './views/ControlPane';
 import './index.css';
-// import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import ContryPanel from './ContryPanel'
 
-ReactDOM.render(<ContryPanel />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(
+  <ControlPanel/>,
+  document.getElementById('root')
+);
