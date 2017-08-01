@@ -1,31 +1,31 @@
-import  { Component} from 'react';
-import PropTypes from 'prop-types';
+// import  { Component} from 'react';
+// import PropTypes from 'prop-types';
 
 
-//通过provider来传递只读的全局store，来避免深层次的props传递
-class Provider extends Component {
+// //通过provider来传递只读的全局store，来避免深层次的props传递
+// class Provider extends Component {
 
-  getChildContext() {
-    return {
-      store: this.props.store //获取全局store,以提供给下层组件
-    };
-  }
+//   getChildContext() {
+//     return {
+//       store: this.props.store //获取全局store,以提供给下层组件
+//     };
+//   }
 
-  render() {
-    return this.props.children;//把渲染工作完全交给子组件
-  }
+//   render() {
+//     return this.props.children;//把渲染工作完全交给子组件
+//   }
 
-}
+// }
 
-Provider.propTypes = {
-  store: PropTypes.object.isRequired
-}
+// Provider.propTypes = {
+//   store: PropTypes.object.isRequired
+// }
 
-Provider.childContextTypes = {  //让React认可Provider是一个context的提供者
-  store: PropTypes.object
-};
+// Provider.childContextTypes = {  //让React认可Provider是一个context的提供者
+//   store: PropTypes.object
+// };
 
-export default Provider;
+// export default Provider;
 
 
 // 1.获取全局只读store(getChildContext)
