@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import Counter from './Counter.js';
-import Summary from './Summary.js';
+import Counter from './Counter';
+import Summary from './Summary';
 
 const style = {
   margin: '20px'
 };
 
 class ControlPanel extends Component {
-
   render() {
     return (
       <div style={style}>
