@@ -7,6 +7,6 @@ const initValues = {
   'Third': 20
 };
 
-const store = createStore(reducer, initValues);
+const store = createStore(reducer, initValues); //initValues作为初始state传递给reducer，也就是reducer的第一个参数state
 
 export default store;

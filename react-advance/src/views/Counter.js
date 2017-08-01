@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
 
 import store from '../Store';
 import * as Actions from '../Action';
@@ -7,28 +8,53 @@ const buttonStyle = {
   margin: '10px'
 };
 
+
+//无状态'傻瓜式组件'
 class Counter extends Component {
+  render() {
+    const {caption, onIncrement, onDecrement, value} = this.props; //Counter组件的唯一数据源,数据均来自props=>无状态组件
+
+    return (
+      <div>
+        <button style={buttonStyle} onClick={onIncrement}>+</button>
+        <button style={buttonStyle} onClick={onDecrement}>-</button>
+        <span>{caption} count: {value}</span>
+      </div>
+    );
+  }
+}
+
+Counter.propTypes = {
+  caption: PropTypes.string.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired
+};
+
+
+
+
+
+//容器组件，为傻瓜式组件提供数据，通过props传递
+class CounterContainer extends Component {
   constructor(props) {
     super(props);
-
     this.onIncrement = this.onIncrement.bind(this);
     this.onDecrement = this.onDecrement.bind(this);
     this.onChange = this.onChange.bind(this);
     this.getOwnState = this.getOwnState.bind(this);
-
     this.state = this.getOwnState();
   }
-  
 
-  //获取数据
+
+
+
   getOwnState() {
     return {
       value: store.getState()[this.props.caption]
     };
   }
 
-
-  //点击事件分发action,将props.caption的类型传递给reducer
   onIncrement() {
     store.dispatch(Actions.increment(this.props.caption));
   }
@@ -55,21 +81,15 @@ class Counter extends Component {
   }
 
   render() {
-    const value = this.state.value;
-    const {caption} = this.props;
-
-    return (
-      <div>
-        <button style={buttonStyle} onClick={this.onIncrement}>+</button>
-        <button style={buttonStyle} onClick={this.onDecrement}>-</button>
-        <span>{caption} count: {value}</span>
-      </div>
-    );
+    
+    return <Counter caption={this.props.caption}
+      onIncrement={this.onIncrement}
+      onDecrement={this.onDecrement}
+      value={this.state.value} />
   }
 }
 
-// Counter.propTypes = {
+// CounterContainer.propTypes = {
 //   caption: PropTypes.string.isRequired
 // };
-
-export default Counter;
+export default CounterContainer;

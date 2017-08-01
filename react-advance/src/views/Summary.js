@@ -16,7 +16,7 @@ class Summary extends Component {
   }
 
 
-  //获取store中的数据
+  //获取store中的数据,store中只是存储了counter各自的值,需要自行计算总值
   getOwnState() {
     const state = store.getState();
     let sum = 0;
