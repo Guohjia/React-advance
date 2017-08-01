@@ -1,18 +1,16 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 
-import store from '../Store';
+
 import * as Actions from '../Action';
 
 const buttonStyle = {
   margin: '10px'
 };
 
-
-//无状态'傻瓜式组件'
 class Counter extends Component {
   render() {
-    const {caption, onIncrement, onDecrement, value} = this.props; //Counter组件的唯一数据源,数据均来自props=>无状态组件
+    const {caption, onIncrement, onDecrement, value} = this.props;
 
     return (
       <div>
@@ -32,35 +30,30 @@ Counter.propTypes = {
 };
 
 
-
-
-
-//容器组件，为傻瓜式组件提供数据，通过props传递
 class CounterContainer extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
+
     this.onIncrement = this.onIncrement.bind(this);
     this.onDecrement = this.onDecrement.bind(this);
     this.onChange = this.onChange.bind(this);
     this.getOwnState = this.getOwnState.bind(this);
+
     this.state = this.getOwnState();
   }
 
-
-
-
   getOwnState() {
     return {
-      value: store.getState()[this.props.caption]
+      value: this.context.store.getState()[this.props.caption]  //从context中获取数据store
     };
   }
 
   onIncrement() {
-    store.dispatch(Actions.increment(this.props.caption));
+    this.context.store.dispatch(Actions.increment(this.props.caption));
   }
 
   onDecrement() {
-    store.dispatch(Actions.decrement(this.props.caption));
+    this.context.store.dispatch(Actions.decrement(this.props.caption));
   }
 
   onChange() {
@@ -73,15 +66,14 @@ class CounterContainer extends Component {
   }
 
   componentDidMount() {
-    store.subscribe(this.onChange);
+    this.context.store.subscribe(this.onChange);
   }
 
   componentWillUnmount() {
-    store.unsubscribe(this.onChange);
+    this.context.store.unsubscribe(this.onChange);
   }
 
   render() {
-    
     return <Counter caption={this.props.caption}
       onIncrement={this.onIncrement}
       onDecrement={this.onDecrement}
@@ -89,7 +81,12 @@ class CounterContainer extends Component {
   }
 }
 
-// CounterContainer.propTypes = {
-//   caption: PropTypes.string.isRequired
-// };
+CounterContainer.propTypes = {
+  caption: PropTypes.string.isRequired
+};
+
+CounterContainer.contextTypes = { //和provider 保持一致
+  store: PropTypes.object
+}
+
 export default CounterContainer;
