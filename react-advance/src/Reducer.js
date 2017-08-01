@@ -1,5 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 
+
+//reducer收到action和state，根据action类型整合数据=>更新store
 export default (state, action) => {
   const {counterCaption} = action;
 

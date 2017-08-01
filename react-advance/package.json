@@ -20,5 +20,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://guohjia.github.io/React-advance/react-advence/build/"
+  "homepage": "https://guohjia.github.io/React-advance/react-advance/build/"
 }

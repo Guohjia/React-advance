@@ -15,6 +15,8 @@ class Summary extends Component {
     this.setState(this.getOwnState());
   }
 
+
+  //获取store中的数据
   getOwnState() {
     const state = store.getState();
     let sum = 0;

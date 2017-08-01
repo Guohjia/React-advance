@@ -18,13 +18,17 @@ class Counter extends Component {
 
     this.state = this.getOwnState();
   }
+  
 
+  //获取数据
   getOwnState() {
     return {
       value: store.getState()[this.props.caption]
     };
   }
 
+
+  //点击事件分发action,将props.caption的类型传递给reducer
   onIncrement() {
     store.dispatch(Actions.increment(this.props.caption));
   }

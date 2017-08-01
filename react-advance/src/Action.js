@@ -3,7 +3,7 @@ import * as ActionTypes from './ActionTypes';
 export const increment = (counterCaption) => {
   return {
     type: ActionTypes.INCREMENT,
-    counterCaption: counterCaption
+    counterCaption: counterCaption  //???
   };
 };
 
