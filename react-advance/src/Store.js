@@ -1,12 +1,28 @@
-import {createStore} from 'redux';
-import reducer from './Reducer';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 
-const initValues = {
-  'First': 0,
-  'Second': 10,
-  'Third': 20
-};
+import {reducer as todoReducer} from './todos';
+import {reducer as filterReducer} from './filter';
 
-const store = createStore(reducer, initValues); //initValues作为初始state传递给reducer，也就是reducer的第一个参数state
+import Perf from 'react-addons-perf'
 
-export default store;
+const win = window;
+win.Perf = Perf
+
+const reducer = combineReducers({
+  todos: todoReducer,
+  filter: filterReducer
+});
+
+//中间件???
+// const middlewares = [];
+// if (process.env.NODE_ENV !== 'production') {
+//   middlewares.push(require('redux-immutable-state-invariant')());
+// }
+
+// const storeEnhancers = compose(
+//   applyMiddleware(...middlewares),
+//   (win && win.devToolsExtension) ? win.devToolsExtension() : (f) => f,
+// );
+
+export default createStore(reducer, {});
+
