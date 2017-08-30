@@ -1,0 +1,21 @@
+.addTodo{
+    margin-top: 20px;
+}
+.addTodo .newTodo{
+    min-height: 30px;
+    min-width: 300px;
+}
+.addTodo button{
+    padding: 10px;
+    margin-left: 4px;
+}
+.todo-item{
+    position: relative;
+    height: 30px;
+}
+.todo-item .remove{
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
