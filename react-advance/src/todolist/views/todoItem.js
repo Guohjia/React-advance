@@ -2,7 +2,7 @@ import React  from 'react';
 // import PropTypes from 'prop-types';
 
 const TodoItem=({onToggle,onRemoveTodo,completed,text})=>{
-    const checkedProp =completed?{checked:true}:{}
+    const checkedProp =completed?{checked:true}:{checked: false}
     return (
         <li
             style={{textDecoration: completed? 'line-through':'none'}}
