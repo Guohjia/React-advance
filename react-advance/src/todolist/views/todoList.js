@@ -2,6 +2,7 @@ import React from 'react'
 import TodoItem from './todoItem.js';
 import {connect} from 'react-redux';
 import {toggleTodo,removeTodo} from '../actions.js';
+import {FilterTypes} from '../../constants'
 import './style.css'
 const TodoList=({todos,onToggleTodo,onRemoveTodo})=>{
     return (
@@ -20,10 +21,21 @@ const TodoList=({todos,onToggleTodo,onRemoveTodo})=>{
         </ul>
     )
 }
-
+const selectVisibleTodos=(todos,filter)=>{
+    switch(filter){
+        case FilterTypes.ALL:
+            return todos;
+        case FilterTypes.COMPLETED:
+            return todos.filter(item=>item.completed);
+        case FilterTypes.UNCOMPLETED:
+            return todos.filter(item =>!item.completed)
+        default:
+            throw new Error('unsupport filter')
+    }
+}
 const mapStateTopProps=(state)=>{
     return {
-        todos:state
+        todos:selectVisibleTodos(state.todos,state.filter)
     }
 }
 

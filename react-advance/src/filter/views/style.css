@@ -1,0 +1,8 @@
+.filters{
+    position: absolute;
+    top:39px
+}
+.filters .filter{
+    text-decoration: none;
+    color:rgb(52, 52, 52);
+}
